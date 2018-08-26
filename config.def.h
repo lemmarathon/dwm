@@ -29,11 +29,22 @@ static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
+	 *
+	 *	class, instance, title
+	 *	tags mask, iscentered, isfloating, monitor
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Pavucontrol", NULL,    NULL,       0,            1,           -1 },
-	{ "Nm-connection-editor", NULL, NULL, 0,            1,           -1 },
+	{	"Firefox", NULL, NULL,
+		0,         0,          0,          -1
+	},
+	{	"Nm-connection-editor", NULL, NULL,
+		0,         1,          1,          -1
+	},
+	{	"Pavucontrol", NULL, NULL,
+		0,         1,          1,          -1
+	},
+	{	"Xfce4-appfinder", NULL, NULL,
+		0,         1,          1,          -1
+	},
 };
 
 /* layout(s) */
@@ -63,11 +74,15 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "xfce4-terminal", NULL };
+static const char *querycmd[]  = { "xfce4-appfinder", "-c", NULL };
+static const char *webcmd[]  = { "firefox", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_q,      spawn,          {.v = querycmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
