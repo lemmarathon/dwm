@@ -77,12 +77,14 @@ static const char *termcmd[]  = { "xfce4-terminal", NULL };
 static const char *quitcmd[]  = { "xfce4-session-logout", "-c", NULL };
 static const char *querycmd[]  = { "xfce4-appfinder", "-c", NULL };
 static const char *webcmd[]  = { "firefox", NULL };
+static const char *emacscmd[]  = { "emacs", "-c", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_q,      spawn,          {.v = querycmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = emacscmd } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
